@@ -14,6 +14,7 @@ import it.uniroma3.diadia.giocatore.Giocatore;
 
 public class Partita {
 
+	private IO console;
 	private Stanza stanzaCorrente;
 	private boolean finita;
 	private Labirinto labirinth;
@@ -21,6 +22,7 @@ public class Partita {
 	
 	public Partita(){
 		
+		this.console = new IOConsole();
 		this.player = new Giocatore();
 		this.labirinth = new Labirinto();
 		this.stanzaCorrente = this.labirinth.getStanzaIniziale();
@@ -32,14 +34,38 @@ public class Partita {
 		return labirinth;
 	}
 
-	public Giocatore getPlayer() {
+	public Giocatore getGiocatore() {
 		return player;
 	}
+	
+	public int getCfu() {
+		return this.player.getCfu();
+	}
+	
+	public IO getConsole() {
+		return this.console;
+	}
 
-	public void setPlayer(Giocatore player) {
+	public Stanza getStanzaVincente() {
+		return this.labirinth.getStanzaVincente();
+	}
+	
+	public Stanza getStanzaCorrente() {
+		return this.stanzaCorrente;
+	}
+	
+	public void setGiocatore(Giocatore player) {
 		this.player = player;
 	}
 
+	public void setCfu(int cfu) {
+		this.player.setCfu(cfu);
+	}
+	
+	public void setStanzaCorrente(Stanza stanzaCorrente) {
+		this.stanzaCorrente = stanzaCorrente;
+	}
+	
 	/**
 	 * Restituisce vero se e solo se la partita e' stata vinta
 	 * @return vero se partita vinta
@@ -63,24 +89,5 @@ public class Partita {
 	public void setFinita() {
 		this.finita = true;
 	}
-	
-	public int getCfu() {
-		return this.player.getCfu();
-	}
-	
-	public void setCfu(int cfu) {
-		this.player.setCfu(cfu);
-	}
-	
-	public Stanza getStanzaVincente() {
-		return this.labirinth.getStanzaVincente();
-	}
-	
-	public Stanza getStanzaCorrente() {
-		return this.stanzaCorrente;
-	}
-	
-	public void setStanzaCorrente(Stanza stanzaCorrente) {
-		this.stanzaCorrente = stanzaCorrente;
-	}
+
 }
